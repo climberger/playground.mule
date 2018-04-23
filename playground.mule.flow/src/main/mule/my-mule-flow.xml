@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:mymule="http://www.mulesoft.org/schema/mule/mymule" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/mymule http://www.mulesoft.org/schema/mule/mymule/current/mule-mymule.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="97ba52e4-f0ea-47f7-a4d6-952913bf7453" >
+		<http:listener-connection host="localhost" port="8082" />
+	</http:listener-config>
+	<mymule:config name="MyMule_Config" doc:name="MyMule Config" doc:id="54de9270-3516-4bd9-b78d-e5b828a8a15c" configId="anypointConfigId" >
+		<mymule:connection requiredParameter="anypointParam" />
+	</mymule:config>
+	<flow name="my-mule-flowFlow" doc:id="8cf043fb-d368-48a2-aac9-0f1ce2ca6e0d" >
+		<http:listener doc:name="Listener" doc:id="414e9af0-5f89-4d30-a926-c81f6c76a3dd" config-ref="HTTP_Listener_config" path="/test"/>
+		<mymule:retrieve-info doc:name="Retrieve info" doc:id="07545d9e-4d34-4107-9512-7c581bdb5c62" config-ref="MyMule_Config"/>
+		<logger level="INFO" doc:name="Logger" doc:id="258bf2bb-5db1-4e2f-badd-c1c9c74ecf09" />
+		<mymule:say-hi doc:name="Say hi" doc:id="372fb09c-a038-4d5a-99c0-be00e7346831" person="personFromAnypoint"/>
+		<logger level="INFO" doc:name="Logger" doc:id="950f543b-f3d1-4341-b65b-e15e91a59e76" />
+	</flow>
+</mule>
