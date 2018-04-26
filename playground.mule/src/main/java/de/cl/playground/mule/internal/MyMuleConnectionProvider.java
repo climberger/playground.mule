@@ -14,50 +14,48 @@ import org.slf4j.LoggerFactory;
 
 
 /**
- * This class (as it's name implies) provides connection instances and the funcionality to disconnect and validate those
- * connections.
+ * This class (as it's name implies) provides connection instances and the funcionality to disconnect and validate those connections.
  * <p>
- * All connection related parameters (values required in order to create a connection) must be
- * declared in the connection providers.
+ * All connection related parameters (values required in order to create a connection) must be declared in the connection providers.
  * <p>
- * This particular example is a {@link PoolingConnectionProvider} which declares that connections resolved by this provider
- * will be pooled and reused. There are other implementations like {@link CachedConnectionProvider} which lazily creates and
- * caches connections or simply {@link ConnectionProvider} if you want a new connection each time something requires one.
+ * This particular example is a {@link PoolingConnectionProvider} which declares that connections resolved by this provider will be pooled and reused. There are other implementations like {@link
+ * CachedConnectionProvider} which lazily creates and caches connections or simply {@link ConnectionProvider} if you want a new connection each time something requires one.
  */
 public class MyMuleConnectionProvider implements PoolingConnectionProvider<MyMuleConnection> {
 
-  private final Logger LOGGER = LoggerFactory.getLogger(MyMuleConnectionProvider.class);
+    private final Logger LOGGER = LoggerFactory.getLogger(MyMuleConnectionProvider.class);
 
- /**
-  * A parameter that is always required to be configured.
-  */
-  @Parameter
-  private String requiredParameter;
+    /**
+     * A parameter that is always required to be configured.
+     */
+    @DisplayName("Required Parameter")
+    @Parameter
+    private String requiredParameter;
 
- /**
-  * A parameter that is not required to be configured by the user.
-  */
-  @DisplayName("Friendly Name")
-  @Parameter
-  @Optional(defaultValue = "100")
-  private int optionalParameter;
+    /**
+     * A parameter that is not required to be configured by the user.
+     */
+    @DisplayName("Optional Parameter")
+    @Parameter
+    @Optional(defaultValue = "100")
+    private int optionalParameter;
 
-  @Override
-  public MyMuleConnection connect() throws ConnectionException {
-    return new MyMuleConnection(requiredParameter + ":" + optionalParameter);
-  }
-
-  @Override
-  public void disconnect(MyMuleConnection connection) {
-    try {
-      connection.invalidate();
-    } catch (Exception e) {
-      LOGGER.error("Error while disconnecting [" + connection.getId() + "]: " + e.getMessage(), e);
+    @Override
+    public MyMuleConnection connect() throws ConnectionException {
+        return new MyMuleConnection(requiredParameter + ":" + optionalParameter);
     }
-  }
 
-  @Override
-  public ConnectionValidationResult validate(MyMuleConnection connection) {
-    return ConnectionValidationResult.success();
-  }
+    @Override
+    public void disconnect(MyMuleConnection connection) {
+        try {
+            connection.invalidate();
+        } catch (Exception e) {
+            LOGGER.error("Error while disconnecting [" + connection.getId() + "]: " + e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public ConnectionValidationResult validate(MyMuleConnection connection) {
+        return ConnectionValidationResult.success();
+    }
 }
