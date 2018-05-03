@@ -1,4 +1,4 @@
-package de.cl.playground.mule.internal;
+package de.cl.playground.mule.mymule;
 
 
 /**

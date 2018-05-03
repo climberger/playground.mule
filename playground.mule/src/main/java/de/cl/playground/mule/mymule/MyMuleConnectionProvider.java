@@ -1,4 +1,4 @@
-package de.cl.playground.mule.internal;
+package de.cl.playground.mule.mymule;
 
 import org.mule.runtime.api.connection.ConnectionException;
 import org.mule.runtime.extension.api.annotation.param.Parameter;

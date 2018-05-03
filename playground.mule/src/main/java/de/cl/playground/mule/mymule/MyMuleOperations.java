@@ -1,4 +1,4 @@
-package de.cl.playground.mule.internal;
+package de.cl.playground.mule.mymule;
 
 import static org.mule.runtime.extension.api.annotation.param.MediaType.ANY;
 

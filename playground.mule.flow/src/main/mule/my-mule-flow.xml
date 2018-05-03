@@ -5,17 +5,18 @@
 	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
 http://www.mulesoft.org/schema/mule/mymule http://www.mulesoft.org/schema/mule/mymule/current/mule-mymule.xsd">
-	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="97ba52e4-f0ea-47f7-a4d6-952913bf7453" >
-		<http:listener-connection host="localhost" port="8082" />
+	<http:listener-config name="HTTP_Listener_config1" doc:name="HTTP Listener config" doc:id="ded9465c-9df1-45dc-a9d3-0bc7c9b1a1ab" >
+		<http:listener-connection host="localhost" port="8000" />
 	</http:listener-config>
-	<mymule:config name="MyMule_Config" doc:name="MyMule Config" doc:id="54de9270-3516-4bd9-b78d-e5b828a8a15c" configId="anypointConfigId" >
-		<mymule:connection requiredParameter="anypointParam" />
+	<mymule:config name="MyMule_Config1" doc:name="MyMule Config" doc:id="6d7ed87f-0a74-4ff0-a3c8-85315601ea49" configId="configID" >
+		<mymule:connection requiredParameter="requiredValue" />
 	</mymule:config>
-	<flow name="my-mule-flowFlow" doc:id="8cf043fb-d368-48a2-aac9-0f1ce2ca6e0d" >
-		<http:listener doc:name="Listener" doc:id="414e9af0-5f89-4d30-a926-c81f6c76a3dd" config-ref="HTTP_Listener_config" path="/test"/>
-		<mymule:retrieve-info doc:name="Retrieve info" doc:id="07545d9e-4d34-4107-9512-7c581bdb5c62" config-ref="MyMule_Config"/>
-		<logger level="INFO" doc:name="Logger" doc:id="258bf2bb-5db1-4e2f-badd-c1c9c74ecf09" />
-		<mymule:say-hi doc:name="Say hi" doc:id="372fb09c-a038-4d5a-99c0-be00e7346831" person="personFromAnypoint"/>
-		<logger level="INFO" doc:name="Logger" doc:id="950f543b-f3d1-4341-b65b-e15e91a59e76" />
+	<flow name="flowFlow" doc:id="25006865-5f5d-4d23-83b2-351d5f680a72" >
+		<http:listener doc:name="Listener" doc:id="e892928b-b676-4251-937a-3ecc9741257a" config-ref="HTTP_Listener_config1" path="/test"/>
+		<logger level="INFO" doc:name="Logger 1" doc:id="e4a842cc-3b16-45cf-8471-cd8f29885664" message="Logger 1: #[payload]"/>
+		<mymule:retrieve-info doc:name="Retrieve info" doc:id="49656eab-d1d1-4470-83f6-3a7a1290f72e" config-ref="MyMule_Config1"/>
+		<logger level="INFO" doc:name="Logger 2" doc:id="5e212f63-1723-42a2-a31f-cd8bb4d33f60" message="Logger 2: #[payload]"/>
+		<mymule:say-hi doc:name="Say hi" doc:id="6319819b-ea1d-470a-9ebc-4d25b3a0b7f2" person="Fritz Anypoint"/>
+		<logger level="INFO" doc:name="Logger 3" doc:id="7238b00d-4eef-4fcf-b101-0de94593d4d6" message="Logger 3: #[payload]"/>
 	</flow>
 </mule>

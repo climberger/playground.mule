@@ -1,4 +1,4 @@
-package de.cl.playground.mule.internal;
+package de.cl.playground.mule.mymule;
 
 import org.mule.runtime.extension.api.annotation.Operations;
 import org.mule.runtime.extension.api.annotation.connectivity.ConnectionProviders;
@@ -13,7 +13,7 @@ import org.mule.runtime.extension.api.annotation.param.display.DisplayName;
 @ConnectionProviders(MyMuleConnectionProvider.class)
 public class MyMuleConfiguration {
 
-  @DisplayName("MyMuleConfiguration")
+  @DisplayName("MyMuleConfiguration ID")
   @Parameter
   private String configId;
 
