@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:mymule="http://www.mulesoft.org/schema/mule/mymule" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/mymule http://www.mulesoft.org/schema/mule/mymule/current/mule-mymule.xsd">
+	<flow name="example_1Flow" doc:id="29b8ec7d-29a2-48fa-b0a2-e1a9e92ac205" >
+		<http:listener doc:name="Listener" doc:id="27e6f3d7-c7ba-4fbf-b8af-48a0a33496a5" config-ref="HTTP_Listener_config1" path="/transform"/>
+		<logger level="INFO" doc:name="HTTP Payload" doc:id="d92421d8-071f-4916-a40e-ad188f479c41" message="HTTP Payload: #[payload]"/>
+		<logger level="INFO" doc:name="HTTP Data Value" doc:id="0d281183-fd82-4783-8b25-023fcde792e3" message="Data Value: #[payload.data]"/>
+		<mymule:get-data doc:name="Get data" doc:id="760198c9-9472-48bc-8fdd-af7e774d6aa2" config-ref="MyMule_Config1" dataParameter="#[payload.data]" transformationParameter="suffix"/>
+		<logger level="INFO" doc:name="Logger" doc:id="921814b0-c253-4eae-b9a4-b6e60249f6d3" message="Transformed Data Value: #[payload.transformed]"/>
+	</flow>
+</mule>

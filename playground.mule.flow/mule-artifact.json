@@ -1,6 +1,8 @@
 {
   "configs": [
-    "my-mule-flow.xml"
+    "example_2.xml",
+    "example_1.xml",
+    "example_3.xml"
   ],
   "secureProperties": [],
   "redeploymentEnabled": true,

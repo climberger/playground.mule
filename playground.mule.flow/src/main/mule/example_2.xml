@@ -13,8 +13,8 @@ http://www.mulesoft.org/schema/mule/mymule http://www.mulesoft.org/schema/mule/m
 	</mymule:config>
 	<flow name="flowFlow" doc:id="25006865-5f5d-4d23-83b2-351d5f680a72" >
 		<http:listener doc:name="Listener" doc:id="e892928b-b676-4251-937a-3ecc9741257a" config-ref="HTTP_Listener_config1" path="/test"/>
-		<logger level="INFO" doc:name="Logger 1" doc:id="e4a842cc-3b16-45cf-8471-cd8f29885664" message="Logger 1: #[payload]"/>
-		<mymule:retrieve-info doc:name="Retrieve info" doc:id="49656eab-d1d1-4470-83f6-3a7a1290f72e" config-ref="MyMule_Config1"/>
+		<logger level="INFO" doc:name="Logger 1" doc:id="e4a842cc-3b16-45cf-8471-cd8f29885664" message="Logger 1: #[payload.test]"/>
+		<mymule:retrieve-info doc:name="Retrieve info" doc:id="49656eab-d1d1-4470-83f6-3a7a1290f72e" config-ref="MyMule_Config1" anyProp="#[payload.test]"/>
 		<logger level="INFO" doc:name="Logger 2" doc:id="5e212f63-1723-42a2-a31f-cd8bb4d33f60" message="Logger 2: #[payload]"/>
 		<mymule:say-hi doc:name="Say hi" doc:id="6319819b-ea1d-470a-9ebc-4d25b3a0b7f2" person="Fritz Anypoint"/>
 		<logger level="INFO" doc:name="Logger 3" doc:id="7238b00d-4eef-4fcf-b101-0de94593d4d6" message="Logger 3: #[payload]"/>
